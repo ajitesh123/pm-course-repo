@@ -509,16 +509,21 @@ const CourseContent = ({
           {lesson.description && (
             <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
               <h3 className="text-lg font-semibold mb-3">Lesson Overview</h3>
-              <div className="text-base leading-relaxed">
+              <div className="text-base leading-relaxed [&_ul]:ml-4 [&_ol]:ml-4 [&_li>ul]:mt-2 [&_li>ol]:mt-2 [&_li>ul]:mb-0 [&_li>ol]:mb-0">
                 <ReactMarkdown
                   components={{
-                    p: ({ children }) => <p className="mb-3">{children}</p>,
-                    ul: ({ children }) => <ul className="list-disc list-inside mb-3 space-y-1">{children}</ul>,
-                    ol: ({ children }) => <ol className="list-decimal list-inside mb-3 space-y-1">{children}</ol>,
-                    li: ({ children }) => <li className="ml-2">{children}</li>,
-                    strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
-                    em: ({ children }) => <em className="italic">{children}</em>,
-                    code: ({ children }) => <code className="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm">{children}</code>,
+                    p: ({ children }) => <p className="mb-4">{children}</p>,
+                    ul: ({ children }) => <ul className="list-disc pl-6 mb-4 space-y-2">{children}</ul>,
+                    ol: ({ children }) => <ol className="list-decimal pl-6 mb-4 space-y-2">{children}</ol>,
+                    li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+                    strong: ({ children }) => <strong className="font-semibold text-gray-900 dark:text-gray-100">{children}</strong>,
+                    em: ({ children }) => <em className="italic text-gray-700 dark:text-gray-300">{children}</em>,
+                    code: ({ children }) => <code className="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm font-mono">{children}</code>,
+                    h1: ({ children }) => <h1 className="text-2xl font-bold mb-4 mt-6">{children}</h1>,
+                    h2: ({ children }) => <h2 className="text-xl font-bold mb-3 mt-5">{children}</h2>,
+                    h3: ({ children }) => <h3 className="text-lg font-semibold mb-2 mt-4">{children}</h3>,
+                    h4: ({ children }) => <h4 className="text-base font-semibold mb-2 mt-3">{children}</h4>,
+                    blockquote: ({ children }) => <blockquote className="border-l-4 border-gray-300 dark:border-gray-700 pl-4 italic my-4">{children}</blockquote>,
                   }}
                 >
                   {lesson.description}
