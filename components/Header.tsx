@@ -13,7 +13,7 @@ export default function Header() {
         <div className="grid grid-cols-3 items-center">
           <div className="flex items-center">
             <Link href="/" className="text-xl font-bold">
-              Tough Tongue AI
+              PM Interview
             </Link>
           </div>
           <nav className="flex items-center justify-center space-x-6">
@@ -30,10 +30,10 @@ export default function Header() {
               Course
             </Link>
             <Link 
-              href="/analysis" 
-              className={`hover:text-gray-600 ${pathname === "/analysis" ? "font-semibold" : ""}`}
+              href="/practice" 
+              className={`hover:text-gray-600 ${pathname === "/practice" ? "font-semibold" : ""}`}
             >
-              Analysis
+              AI Practice
             </Link>
           </nav>
           <div className="flex justify-end">

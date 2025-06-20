@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI Course Creator - Tough Tongue AI",
-  description: "Create your course with Tough Tongue AI",
+  title: "The Ultimate PM Interview Prep Course | Ex-Google PM",
+  description: "Master PM interviews with 30+ video lessons, 35 AI practice scenarios, and a 100+ page guidebook. Learn from an ex-Google PM with hundreds of interviews conducted.",
 };
 
 export default function RootLayout({

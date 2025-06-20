@@ -22,61 +22,149 @@ interface Lesson {
   duration: string;
   videoUrl: string;
   mediaType: MediaEmbedType;
+  description?: string;
 }
 
-interface Course {
+interface Module {
+  id: string;
   title: string;
   lessons: Lesson[];
 }
 
-// Sample course data
+interface Course {
+  title: string;
+  modules: Module[];
+}
+
+// PM Interview Prep Course Data
 const courseData: Course = {
-  title: "Product Management Interview Preparation",
-  lessons: [
+  title: "The Ultimate PM Interview Prep Course",
+  modules: [
     {
-      id: "favorite-product-question",
-      title: "Integrate Voice agent into the website",
-      duration: "5:00",
-      videoUrl: "https://www.youtube.com/watch?v=CkhXgec-iHI",
-      mediaType: "youtube"
+      id: "product-design",
+      title: "Product Design & Strategy",
+      lessons: [
+        {
+          id: "intro-product-design",
+          title: "Introduction to Product Design Questions",
+          duration: "8:45",
+          videoUrl: "https://www.youtube.com/watch?v=CkhXgec-iHI",
+          mediaType: "youtube",
+          description: "Learn the framework for answering product design questions effectively"
+        },
+        {
+          id: "favorite-product",
+          title: "Answering 'What's Your Favorite Product?'",
+          duration: "12:30",
+          videoUrl: "https://www.youtube.com/watch?v=CkhXgec-iHI",
+          mediaType: "youtube",
+          description: "Master this common PM interview question with real examples"
+        },
+        {
+          id: "ai-practice-product",
+          title: "AI Practice: Favorite Product Question",
+          duration: "Interactive",
+          videoUrl: "https://app.toughtongueai.com/embed/677e7676de365dba3af0055a?bg=black&skipPrecheck=true",
+          mediaType: "toughtongue",
+          description: "Practice with our AI interviewer and get real-time feedback"
+        },
+        {
+          id: "design-new-product",
+          title: "Design a New Product Framework",
+          duration: "15:00",
+          videoUrl: "https://www.youtube.com/watch?v=CkhXgec-iHI",
+          mediaType: "youtube",
+          description: "Step-by-step approach to designing products from scratch"
+        }
+      ]
     },
     {
-      id: "answer-favorite-product-question",
-      title: "Get your questions answered by AI",
-      duration: "1:31",
-      videoUrl: "https://app.toughtongueai.com/embed/677e5dbd261d3f3e3803b968?bg=black&skipPrecheck=true",
-      mediaType: "toughtongue"
+      id: "analytical-metrics",
+      title: "Analytical & Metrics",
+      lessons: [
+        {
+          id: "metrics-framework",
+          title: "Metrics Framework for PMs",
+          duration: "10:15",
+          videoUrl: "https://www.youtube.com/watch?v=CkhXgec-iHI",
+          mediaType: "youtube",
+          description: "Understanding and defining success metrics"
+        },
+        {
+          id: "root-cause-analysis",
+          title: "Root Cause Analysis",
+          duration: "9:30",
+          videoUrl: "https://www.youtube.com/watch?v=CkhXgec-iHI",
+          mediaType: "youtube",
+          description: "Diagnose metric drops and performance issues"
+        },
+        {
+          id: "ai-practice-metrics",
+          title: "AI Practice: Metrics Deep Dive",
+          duration: "Interactive",
+          videoUrl: "https://app.toughtongueai.com/embed/677e5dbd261d3f3e3803b968?bg=black&skipPrecheck=true",
+          mediaType: "toughtongue",
+          description: "Practice analyzing metrics with our AI interviewer"
+        }
+      ]
     },
     {
-      id: "practice-favorite-product-question",
-      title: "Practice Favorite Product Question",
-      duration: "10:00",
-      videoUrl: "https://app.toughtongueai.com/embed/677e7676de365dba3af0055a?bg=black&skipPrecheck=true",
-      mediaType: "toughtongue"
-    },
-    {
-      id: "practice-favorite-product-question-2",
-      title: "Practice Favorite Product Question 2",
-      duration: "10:00",
-      videoUrl: "https://app.toughtongueai.com/embed/67b0248abc39997a6c6a4cc7?bg=black&skipPrecheck=true",
-      mediaType: "toughtongue"
+      id: "behavioral",
+      title: "Behavioral & Leadership",
+      lessons: [
+        {
+          id: "star-method",
+          title: "Mastering the STAR Method",
+          duration: "7:45",
+          videoUrl: "https://www.youtube.com/watch?v=CkhXgec-iHI",
+          mediaType: "youtube",
+          description: "Structure your behavioral answers effectively"
+        },
+        {
+          id: "leadership-stories",
+          title: "Crafting Leadership Stories",
+          duration: "11:00",
+          videoUrl: "https://www.youtube.com/watch?v=CkhXgec-iHI",
+          mediaType: "youtube",
+          description: "Showcase your PM leadership experience"
+        },
+        {
+          id: "ai-practice-behavioral",
+          title: "AI Practice: Behavioral Questions",
+          duration: "Interactive",
+          videoUrl: "https://app.toughtongueai.com/embed/67b0248abc39997a6c6a4cc7?bg=black&skipPrecheck=true",
+          mediaType: "toughtongue",
+          description: "Practice behavioral questions with personalized feedback"
+        }
+      ]
     }
   ]
+};
+
+// Helper function to get all lessons in a flat array
+const getAllLessons = (course: Course): Lesson[] => {
+  return course.modules.flatMap(module => module.lessons);
 };
 
 // Course content component
 const CourseContent = ({
   lesson,
   onPrevious,
-  onNext
+  onNext,
+  module
 }: {
   lesson: Lesson;
   onPrevious: () => void;
   onNext: () => void;
+  module: Module;
 }) => {
   return (
     <div className="flex-1 overflow-auto p-6">
       <div className="max-w-3xl mx-auto space-y-6">
+        <div className="mb-2">
+          <p className="text-sm text-gray-600 dark:text-gray-400">{module.title}</p>
+        </div>
+        
         <div className="flex items-center justify-between">
           <Button
             variant="ghost"
@@ -96,7 +184,7 @@ const CourseContent = ({
             Previous
           </Button>
 
-          <h1 className="text-xl md:text-2xl font-bold truncate">{lesson.title}</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-center">{lesson.title}</h1>
 
           <Button
             variant="ghost"
@@ -125,10 +213,26 @@ const CourseContent = ({
         />
 
         <div className="prose dark:prose-invert max-w-none">
-          <p>
-            Answers to any interview question has three distinct parts: beginning, middle, and end. Each
-            part requires different skills and techniques to deliver a solid answer.
-          </p>
+          {lesson.description && (
+            <p className="text-lg mb-4">{lesson.description}</p>
+          )}
+          <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+            <h3 className="text-lg font-semibold mb-2">Lesson Overview</h3>
+            <p>
+              Every PM interview answer has three essential components: <strong>structure</strong>, <strong>content</strong>, and <strong>delivery</strong>. 
+              In this lesson, you'll learn how to master all three to deliver compelling answers that showcase your PM skills.
+            </p>
+          </div>
+          
+          {lesson.mediaType === "toughtongue" && (
+            <div className="mt-6 bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+              <h3 className="text-lg font-semibold mb-2">AI Practice Session</h3>
+              <p>
+                This is an interactive AI practice session. Click "Start Conversation" to practice with our AI interviewer. 
+                You'll receive real-time feedback on your answers, communication style, and areas for improvement.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -136,21 +240,39 @@ const CourseContent = ({
 };
 
 export default function CourseClient() {
-  const [activeLesson, setActiveLesson] = useState(courseData.lessons[1].id);
-  const currentLesson = courseData.lessons.find(l => l.id === activeLesson) || courseData.lessons[0];
+  const allLessons = getAllLessons(courseData);
+  const [activeLesson, setActiveLesson] = useState(allLessons[0].id);
   const [showSidebar, setShowSidebar] = useState(false);
 
-  const currentIndex = courseData.lessons.findIndex(l => l.id === activeLesson);
+  // Find current lesson and its module
+  let currentLesson: Lesson | undefined;
+  let currentModule: Module | undefined;
+  
+  for (const module of courseData.modules) {
+    const lesson = module.lessons.find(l => l.id === activeLesson);
+    if (lesson) {
+      currentLesson = lesson;
+      currentModule = module;
+      break;
+    }
+  }
+  
+  if (!currentLesson || !currentModule) {
+    currentLesson = allLessons[0];
+    currentModule = courseData.modules[0];
+  }
+
+  const currentIndex = allLessons.findIndex(l => l.id === activeLesson);
 
   const handlePrevious = () => {
     if (currentIndex > 0) {
-      setActiveLesson(courseData.lessons[currentIndex - 1].id);
+      setActiveLesson(allLessons[currentIndex - 1].id);
     }
   };
 
   const handleNext = () => {
-    if (currentIndex < courseData.lessons.length - 1) {
-      setActiveLesson(courseData.lessons[currentIndex + 1].id);
+    if (currentIndex < allLessons.length - 1) {
+      setActiveLesson(allLessons[currentIndex + 1].id);
     }
   };
 
@@ -191,6 +313,7 @@ export default function CourseClient() {
         lesson={currentLesson}
         onPrevious={handlePrevious}
         onNext={handleNext}
+        module={currentModule}
       />
     </div>
   );
