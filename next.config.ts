@@ -8,7 +8,7 @@ const ContentSecurityPolicy = `
   img-src * blob: data:;
   connect-src *;
   font-src 'self';
-  frame-src app.toughtongueai.com *.clerk.accounts.dev *.cloudflare.com challenges.cloudflare.com;
+  frame-src app.toughtongueai.com *.clerk.accounts.dev *.cloudflare.com challenges.cloudflare.com https://www.youtube.com https://www.youtube-nocookie.com;
   worker-src 'self' blob:;
   script-src-elem 'self' 'unsafe-inline' *.clerk.accounts.dev *.cloudflare.com;
 `
