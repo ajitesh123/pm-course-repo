@@ -161,10 +161,6 @@ const CourseContent = ({
   return (
     <div className="flex-1 overflow-auto p-6">
       <div className="max-w-3xl mx-auto space-y-6">
-        <div className="mb-2">
-          <p className="text-sm text-gray-600 dark:text-gray-400">{module.title}</p>
-        </div>
-        
         <div className="flex items-center justify-between">
           <Button
             variant="ghost"
@@ -214,15 +210,11 @@ const CourseContent = ({
 
         <div className="prose dark:prose-invert max-w-none">
           {lesson.description && (
-            <p className="text-lg mb-4">{lesson.description}</p>
+            <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+              <h3 className="text-lg font-semibold mb-2">Lesson Overview</h3>
+              <p className="text-lg">{lesson.description}</p>
+            </div>
           )}
-          <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
-            <h3 className="text-lg font-semibold mb-2">Lesson Overview</h3>
-            <p>
-              Every PM interview answer has three essential components: <strong>structure</strong>, <strong>content</strong>, and <strong>delivery</strong>. 
-              In this lesson, you'll learn how to master all three to deliver compelling answers that showcase your PM skills.
-            </p>
-          </div>
           
           {lesson.mediaType === "toughtongue" && (
             <div className="mt-6 bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
